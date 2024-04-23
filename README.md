@@ -8,16 +8,16 @@ git clone https://github.com/a14a19/mxpert-code-round.git
 
 <hr />
 
-## Frontend (Restuarant Web App)
+## Frontend (Restaurant Web App)
 
-Frontend is a simple static web page of a restuarant web app. 
+Frontend is a simple static web page of a restaurant web app. 
 
 To get started with the frontend app - 
 
 1. **Go inside frontend folder:**
 
 ```bash
-cd restaurant-fe
+cd frontend-restaurant
 ```
 
 2. **Install node modules:**
@@ -43,7 +43,7 @@ To get started with the backend app -
 1. **Go inside backend folder:**
 
 ```bash
-cd backend
+cd backend-team-career-camp
 ```
 
 3. **Initialize .env file:**
