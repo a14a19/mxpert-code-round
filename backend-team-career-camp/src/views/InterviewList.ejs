@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Career Camp</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        position: relative;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: lightgrey;
+        color: black;
+        padding: 15px;
+      }
+      main {
+        margin: 70px auto;
+        height: calc(100vh - 140px);
+      }
+      footer {
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: grey;
+        color: whitesmoke;
+      }
+      button {
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      th,
+      td {
+        min-width: 250px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><%=title%></div>
+      <div>
+        <button onclick="'<%= fn() %>';">Download CSV</button>
+        <button onclick="allocateInt()">Allocate Interview</button>
+        <button onclick="studentList()">Student List</button>
+        <button onclick="signOut()">Sign Out</button>
+      </div>
+    </header>
+    <main>
+      <% if (companies.length > 0) {%>
+      <table>
+        <tr>
+          <th>List of Interviews</th>
+        </tr>
+        <% companies.map((company, i) => {%>
+        <tr>
+          <td>
+            <a href="/team-career-camp/interview-list/<%=company._id%>"
+              ><%=company.name%></a
+            >
+          </td>
+        </tr>
+        <%})%>
+      </table>
+      <%} else {%>
+      <div>No interview allocated</div>
+      <%}%>
+    </main>
+    <footer>Footer</footer>
+    <script>
+      function studentList() {
+        window.location.pathname = "/team-career-camp/students-list";
+      }
+      function allocateInt() {
+        window.location.pathname = "/team-career-camp/allocate-interview";
+      }
+      function signOut() {}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Career Camp</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: lightgrey;
+        color: black;
+        padding: 15px;
+      }
+      main {
+        margin: 50px auto;
+        height: calc(100vh - 100px);
+      }
+      footer {
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: grey;
+        color: whitesmoke;
+      }
+      .container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .button-container {
+        position: absolute;
+        top: 5%;
+        right: 3%;
+      }
+      button {
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .form-container {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: lightgrey;
+        padding: 30px 25px;
+        border-radius: 20px;
+      }
+      label {
+        margin: 10px auto;
+      }
+      input,
+      select,
+      option {
+        padding: 5px 10px;
+        border-radius: 8px;
+        min-width: 250px;
+      }
+      .input-btn {
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .error-container {
+        background-color: red;
+        padding: 2px 5px;
+      }
+      .error-container p {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><%=title%></div>
+      <div>
+        <button onclick="intList()">Interview List</button>
+        <button onclick="studentList()">Student List</button>
+        <button onclick="signOut()">Sign Out</button>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <form
+          class="form-container"
+          action="/team-career-camp/interviews/allocate"
+          method="post"
+        >
+          <label for="students">
+            <select name="students" id="students">
+              <option value="" disabled selected>Student Name</option>
+              <% students.map((student, i) => {%>
+              <option value="<%=student._id%>"><%=student.name%></option>
+              <%})%>
+            </select>
+          </label>
+          <label for="companies">
+            <select name="companies" id="companies">
+              <option value="" disabled selected>Company Name</option>
+              <% companies.map((company, i) => {%>
+              <option value="<%=company._id%>">
+                <%=company.name%>
+              </option>
+              <%})%>
+            </select>
+          </label>
+          <label for="date">
+            <input type="datetime-local" id="date" name="date" />
+          </label>
+          <input type="submit" value="<%=sub_title%>" class="input-btn" />
+          <% if(errorStatus){ %>
+          <div class="error-container">
+            <p>Error: <%=errorMessage%></p>
+          </div>
+          <%}%>
+        </form>
+      </div>
+    </main>
+    <footer>Footer</footer>
+    <script>
+      function studentList() {
+        window.location.pathname = "/team-career-camp/students-list";
+      }
+      function intList() {
+        window.location.pathname = "/team-career-camp/interview-list";
+      }
+    </script>
+  </body>
+</html>

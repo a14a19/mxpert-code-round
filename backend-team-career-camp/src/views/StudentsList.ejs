@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Career Camp</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        position: relative;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: lightgrey;
+        color: black;
+        padding: 15px;
+      }
+      main {
+        margin: 70px auto;
+        height: calc(100vh - 140px);
+      }
+      footer {
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: grey;
+        color: whitesmoke;
+      }
+      button {
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      th,
+      td {
+        min-width: 250px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><%=title%></div>
+      <div>
+        <button onclick="intList()">Interview List</button>
+        <button onclick="addStudent()">Add Student</button>
+        <button onclick="signOut()">Sign Out</button>
+      </div>
+    </header>
+    <main>
+      <% if (data.length > 0) {%>
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>College Name</th>
+          <th>Email</th>
+        </tr>
+        <% data.map((student, i) => {%>
+        <tr>
+          <td><%=student.s_id%></td>
+          <td><%=student.name%></td>
+          <td><%=student.college%></td>
+          <td><%=student.email%></td>
+        </tr>
+        <%})%>
+      </table>
+      <%} else {%>
+      <div>No student record found</div>
+      <%}%>
+    </main>
+    <footer>Footer</footer>
+    <script>
+      function addStudent() {
+        window.location.pathname = "/team-career-camp/add-student";
+      }
+      function intList() {
+        window.location.pathname = "/team-career-camp/interview-list";
+      }
+      function signOut() {}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Career Camp</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .button-container {
+            position: absolute;
+            top: 5%;
+            right: 3%;
+        }
+        .button-container button {
+            border: none;
+            background-color: black;
+            color: white;
+            padding: 8px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="button-container">
+            <button onclick="signIn()">
+                Sign In / Sign Up
+            </button>
+        </div>
+        <h1>Welcome To <%= title %>!</h1>
+    </div>
+    <script>
+        function signIn(){
+            window.location.pathname = '/team-career-camp/sign-in';
+        }
+    </script>
+</body>
+</html>

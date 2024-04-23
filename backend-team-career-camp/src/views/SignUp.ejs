@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Career Camp</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .button-container {
+        position: absolute;
+        top: 5%;
+        right: 3%;
+      }
+      button {
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: lightgrey;
+        padding: 30px 25px;
+        border-radius: 20px;
+      }
+      label {
+        margin: 10px auto;
+      }
+      input {
+        padding: 5px 10px;
+        border-radius: 8px;
+      }
+      .input-btn {
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .error-container {
+        background-color: red;
+        padding: 2px 5px;
+      }
+      .error-container p {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form
+        class="form-container"
+        action="/team-career-camp/employees/sign-up"
+        method="post"
+      >
+        <h3><%=title%></h3>
+        <label for="name">
+          <input type="text" placeholder="Name" id="name" name="name" />
+        </label>
+        <label for="email">
+          <input type="email" placeholder="Email" id="email" name="email" />
+        </label>
+        <label for="password">
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+          />
+        </label>
+        <label for="cnf_password">
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            id="cnf_password"
+            name="cnf_password"
+          />
+        </label>
+        <input type="submit" value="<%=data%>" class="input-btn" />
+        <div>
+          <p>
+            Already have an account,
+            <a href="/team-career-camp/sign-in">sign-in</a>
+          </p>
+        </div>
+        <% if(errorStatus){ %>
+        <div class="error-container">
+          <p>Error: <%=errorMessage%></p>
+        </div>
+        <%}%>
+      </form>
+    </div>
+    <script>
+      function signIn() {}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Career Camp</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        position: relative;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: lightgrey;
+        color: black;
+        padding: 15px;
+      }
+      main {
+        margin: 70px auto;
+        height: calc(100vh - 140px);
+      }
+      footer {
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: grey;
+        color: whitesmoke;
+      }
+      button {
+        border: none;
+        background-color: black;
+        color: white;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      th,
+      td {
+        min-width: 250px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><%=title%></div>
+      <div>
+        <button onclick="intList()">Interview List</button>
+        <button onclick="studentList()">Student List</button>
+        <button onclick="signOut()">Sign Out</button>
+      </div>
+    </header>
+    <main>
+      <% if (interviews.length > 0) {%>
+      <table>
+        <tr>
+          <th>Student Name</th>
+          <th>Company Name</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Result</th>
+          <th>DSA score</th>
+          <th>Web score</th>
+          <th>React score</th>
+          <th></th>
+        </tr>
+        <% interviews.map((interview, i) => {%>
+        <tr>
+          <form
+            action="/team-career-camp/interviews/update_student_status/<%=interview._id%>"
+            method="post"
+          >
+            <td><%=interview?.student_id?.name%></td>
+            <td><%=interview.company_name%></td>
+            <td><%=new Date(interview.date).toLocaleString()%></td>
+            <td>
+              <% if(interview.result) {%>
+              <div><%=interview?.student_id?.status%></div>
+              <% } else {%>
+              <select name="status" id="status">
+                <option value="" disabled selected>-Select-</option>
+                <option value="placed">Place</option>
+                <option value="not_placed">Not Place</option>
+              </select>
+              <% } %>
+            </td>
+            <td>
+              <% if(interview.result) {%>
+              <div><%=interview.result%></div>
+              <% } else {%>
+              <select name="result" id="result">
+                <option value="" disabled selected>-Select-</option>
+                <option value="PASS">Pass</option>
+                <option value="FAIL">Fail</option>
+                <option value="On Hold">On Hold</option>
+                <option value="Didn't Attempt">Didn't Attempt</option>
+              </select>
+              <% } %>
+            </td>
+            <td>
+              <% if(interview?.score_id?.dsa_score) {%>
+              <div><%=interview?.score_id?.dsa_score%></div>
+              <% } else {%>
+              <input type="number" id="dsa_score" name="dsa_score" />
+              <% } %>
+            </td>
+            <td>
+              <% if(interview?.score_id?.webd_score) {%>
+              <div><%=interview?.score_id?.webd_score%></div>
+              <% } else {%>
+              <input type="number" id="web_score" name="web_score" />
+              <% } %>
+            </td>
+            <td>
+              <% if(interview?.score_id?.react_score) {%>
+              <div><%=interview?.score_id?.react_score%></div>
+              <% } else {%>
+              <input type="number" id="react_score" name="react_score" />
+              <% } %>
+            </td>
+            <td>
+              <input type="submit" value="Update" class="input-btn" />
+            </td>
+          </form>
+        </tr>
+        <%})%>
+      </table>
+      <%} else {%>
+      <div>No interview for this company</div>
+      <%}%>
+    </main>
+    <footer>Footer</footer>
+    <script>
+      function studentList() {
+        window.location.pathname = "/team-career-camp/students-list";
+      }
+      function intList() {
+        window.location.pathname = "/team-career-camp/interview-list";
+      }
+      function signOut() {}
+    </script>
+  </body>
+</html>
